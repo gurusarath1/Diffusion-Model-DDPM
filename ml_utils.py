@@ -188,9 +188,12 @@ def save_torch_model(model, file_name='saved_model', additional_info='', path='.
 def load_torch_model(model, file_name='saved_model', path='./saved_models', load_latest=True):
 
     if load_latest:
-        model.load_state_dict(torch.load(path + '/' + file_name + '_LATEST_COPY'))
+        model_name = path + '/' + file_name + '_LATEST_COPY'
     else:
-        model.load_state_dict(torch.load(path + '/' + file_name))
+        model_name = path + '/' + file_name
+
+    print(f'Loading Model {model_name} ...')
+    model.load_state_dict(torch.load(model_name))
 
 
 def get_torch_model_output_size_at_each_layer(model, input_shape=0, input_tensor=None):
